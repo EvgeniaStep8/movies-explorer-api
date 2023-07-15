@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
+import bcrypt from 'bcrypt';
+import UnauthorizedError from '../errors/UnauthorizedError';
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -8,7 +10,6 @@ const UserSchema = new mongoose.Schema({
     unique: true,
     validate: {
       validator(email) {
-        // eslint-disable-next-line no-useless-escape
         return validator.isEmail(email);
       },
       message: 'Введите ссылку',
@@ -26,5 +27,26 @@ const UserSchema = new mongoose.Schema({
     maxlength: 30,
   },
 });
+
+// eslint-disable-next-line func-names
+UserSchema.statics.findUserByCredentials = function (email, password) {
+  return this.findOne({ email })
+    .select('+password')
+    .orFail(() => new UnauthorizedError('Передан неверный логин или пароль'))
+    .then((user) => bcrypt.compare(password, user.password)
+      .then((matched) => {
+        if (!matched) {
+          throw new UnauthorizedError('Передан неверный логин или пароль');
+        }
+        return user;
+      }));
+};
+
+// eslint-disable-next-line func-names
+UserSchema.methods.toJSON = function () {
+  const user = this.toObject();
+  delete user.password;
+  return user;
+};
 
 export default mongoose.model('user', UserSchema);
