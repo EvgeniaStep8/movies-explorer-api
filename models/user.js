@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
-import validator from 'validator';
-import bcrypt from 'bcrypt';
-import UnauthorizedError from '../errors/UnauthorizedError';
+const { Schema, model } = require('mongoose');
+const validator = require('validator');
+const bcrypt = require('bcrypt');
+const UnauthorizedError = require('../errors/UnauthorizedError');
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   email: {
     type: String,
     required: true,
@@ -49,4 +49,4 @@ UserSchema.methods.toJSON = function () {
   return user;
 };
 
-export default mongoose.model('user', UserSchema);
+module.exports = model('user', UserSchema);

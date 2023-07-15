@@ -1,7 +1,7 @@
-import { Router } from 'express';
-import userRoutes from './users';
-import moviesRoutes from './movies';
-import NotFoundError from '../errors/NotFoundError';
+const { Router } = require('express');
+const userRoutes = require('./users');
+const moviesRoutes = require('./movies');
+const NotFoundError = require('../errors/NotFoundError');
 
 const router = Router();
 
@@ -9,4 +9,4 @@ router.use('/users', userRoutes);
 router.use('/cards', moviesRoutes);
 router.use('*', (req, res, next) => next(new NotFoundError('Указан несуществующий маршрут')));
 
-export default router;
+module.exports = router;

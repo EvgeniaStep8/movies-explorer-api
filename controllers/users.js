@@ -1,6 +1,6 @@
-import User from '../models/user';
-import NotFoundError from '../errors/NotFoundError';
-import BadRequestError from '../errors/BadRequestError';
+const User = require('../models/user');
+const BadRequestError = require('../errors/BadRequestError');
+const NotFoundError = require('../errors/NotFoundError');
 
 const getUserMe = (req, res, next) => {
   User.findById(req.user._id)
@@ -35,4 +35,7 @@ const patchUser = (req, res, next) => {
     });
 };
 
-export { getUserMe, patchUser };
+module.exports = {
+  getUserMe,
+  patchUser,
+};

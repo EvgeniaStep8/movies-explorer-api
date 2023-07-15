@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-import LINK_REGEX from '../utils/constants';
+const { Schema, model } = require('mongoose');
+const LINK_REGEX = require('../utils/constants');
 
 const MovieSchema = new Schema({
   country: {
@@ -71,4 +71,4 @@ const MovieSchema = new Schema({
   },
 });
 
-export default model('movie', MovieSchema);
+module.exports = model('movie', MovieSchema);

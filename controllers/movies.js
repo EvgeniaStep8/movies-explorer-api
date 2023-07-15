@@ -1,7 +1,7 @@
-import Movie from '../models/movie';
-import BadRequestError from '../errors/BadRequestError';
-import NotFoundError from '../errors/NotFoundError';
-import ForbiddenError from '../errors/ForbiddenError';
+const Movie = require('../models/movie');
+const BadRequestError = require('../errors/BadRequestError');
+const NotFoundError = require('../errors/NotFoundError');
+const ForbiddenError = require('../errors/ForbiddenError');
 
 const getMovies = (req, res, next) => {
   Movie.find({})
@@ -42,4 +42,8 @@ const deleteMovie = (req, res, next) => {
     });
 };
 
-export { getMovies, createMovie, deleteMovie };
+module.exports = {
+  getMovies,
+  createMovie,
+  deleteMovie,
+};
