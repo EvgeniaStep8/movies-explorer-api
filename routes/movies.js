@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { getMovies, createMovie, deleteMovie } from '../controllers/movies';
 
-const userRoutes = Router();
+const moviesRoutes = Router();
 
-userRoutes.get('/', getMovies);
-userRoutes.post('/', createMovie);
-userRoutes.delete('/:id', deleteMovie);
+moviesRoutes.get('/', getMovies);
+moviesRoutes.post('/', createMovie);
+moviesRoutes.delete('/:id', deleteMovie);
 
-export default userRoutes;
+export default moviesRoutes;
