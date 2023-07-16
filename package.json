@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "backend for movies explorer app",
   "main": "app.js",
-  "type": "module",
   "scripts": {
     "lint": "npx eslint .",
     "start": "node app.js",

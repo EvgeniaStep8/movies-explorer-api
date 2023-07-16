@@ -1,9 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config();
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
-require('dotenv').config();
 const cors = require('cors');
 const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middleware/logger');
@@ -13,7 +13,7 @@ const errorHandler = require('./middleware/errorHandler');
 const { PORT = 3000 } = process.env;
 
 const app = express();
-mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
+mongoose.connect('mongodb://127.0.0.1:27017/moviesdb', {
   useNewUrlParser: true,
 });
 
