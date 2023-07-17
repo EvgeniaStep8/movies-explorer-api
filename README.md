@@ -13,3 +13,9 @@ Backend for movies explorer app.
 
 `npm run start` — запускает сервер   
 `npm run dev` — запускает сервер с hot-reload
+
+## Ссылки на проект
+
+IP 158.160.114.110
+
+Backend https://api.movies-explorer-s.nomoredomains.xyz
