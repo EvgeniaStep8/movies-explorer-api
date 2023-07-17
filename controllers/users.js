@@ -81,6 +81,8 @@ const patchUser = (req, res, next) => {
         next(new BadRequestError('Передан некорректный id'));
       } else if (err.message.includes('Validation failed')) {
         next(new BadRequestError('Передан некорректные данные пользователя'));
+      } else if (err.message.includes('duplicate key error')) {
+        next(new ConflictError('Пользователь с переданным email уже существует'));
       } else {
         next(err);
       }
